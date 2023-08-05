@@ -1,17 +1,18 @@
 import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
+import "./FeaturedItem.css";
 import featuredImg from "../../../assets/home/featured.jpg";
 
 const FeaturedItem = () => {
     return (
-      <div>
+      <div className="featured-item text-white pt-8 my-16  bg-fixed">
         <SectionTitle
           subHeading="check it out"
           heading="featured item"
         ></SectionTitle>
         <div>
-          <div className="md:flex justify-center items-center py-8 px-8 ">
+          <div className="md:flex justify-center items-center pb-20 pt-12 px-32 ">
             <div>
-              <img src={featuredImg} alt="" />
+              <img className="img" src={featuredImg} alt="" />
             </div>
             <div className="md:ml-10">
               <p>31 July 1997</p>
@@ -25,7 +26,9 @@ const FeaturedItem = () => {
                 quaerat fuga temporibus amet repudiandae exercitationem libero
                 iure, facere at?
               </p>
-              <button className="btn btn-outline btn-primary mt-2">Order</button>
+              <button className="btn btn-outline btn-primary mt-2 border-0 border-b-4">
+                Order Now
+              </button>
             </div>
           </div>
         </div>
