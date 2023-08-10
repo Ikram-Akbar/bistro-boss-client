@@ -2,7 +2,6 @@
 
 const MenuItem = ({ item }) => {
   const { image, price, recipe, name } = item;
-  console.log(item.image);
   return (
     <div className="flex space-x-4">
       <img
