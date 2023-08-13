@@ -6,6 +6,7 @@ import {
   LoadCanvasTemplate,
   validateCaptcha,
 } from "react-simple-captcha";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [disabled, setDisabled] = useState(true);
@@ -107,6 +108,11 @@ const Login = () => {
                   </button>
                 </div>
               </div>
+              <label className="label">
+                <p className="label-text-alt link link-hover">
+                  New here ? <Link to="/signup"> Sign Up </Link>
+                </p>
+              </label>
             </form>
           </div>
         </div>

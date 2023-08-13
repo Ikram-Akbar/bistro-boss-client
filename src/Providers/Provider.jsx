@@ -7,8 +7,8 @@ import {
 } from "firebase/auth";
 import { app } from "../Firebase/firebase.config,";
 
-export const AuthContext = createContext(null);
-const auth = getAuth(app);
+export const AuthContext = createContext("");
+const auth = getAuth(app);                                                          
 
 const Provider = ({ children }) => {
   const [user, setUser] = useState(null);
