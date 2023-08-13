@@ -3,11 +3,13 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   onAuthStateChanged,
+  signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
+
 import { app } from "../Firebase/firebase.config,";
 
-export const AuthContext = createContext("");
+export const AuthContext = createContext(null);
 const auth = getAuth(app);                                                          
 
 const Provider = ({ children }) => {
@@ -19,11 +21,10 @@ const Provider = ({ children }) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
-  const signIn = (email, password) => {
-    setLoading(true);
-    return createUserWithEmailAndPassword(email, password);
-  };
-
+   const signIn = (email, password) => {
+     setLoading(true);
+     return signInWithEmailAndPassword(auth, email, password);
+   };
   const logOut = () => {
     setLoading(true);
     return signOut(auth);
