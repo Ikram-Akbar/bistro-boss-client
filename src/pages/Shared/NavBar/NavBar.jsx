@@ -19,12 +19,14 @@ const NavBar = () => {
         <Link to="/menu">Our Menu</Link>
       </li>
       <li>
-        <Link to="/order/salad">Our Order</Link>
+        <Link to="/order/salad"> Our Order</Link>
+      </li>
+      <li>
+        <Link to="/secret">Secret</Link>
       </li>
 
       {user ? (
         <>
-         
           <li onClick={handleLogOut} className="mt-2">
             Log out
           </li>
