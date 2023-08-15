@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { AuthContext } from "../../../Providers/Provider";
 import {
@@ -7,10 +7,10 @@ import {
   validateCaptcha,
 } from "react-simple-captcha";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const [disabled, setDisabled] = useState(true);
-  const captchaRef = useRef(null);
   const { signIn } = useContext(AuthContext);
 
   useEffect(() => {
@@ -27,11 +27,21 @@ const Login = () => {
     signIn(email, password).then((result) => {
       const user = result.user;
       console.log(user);
+      Swal.fire({
+        title: "Login Successful.",
+        showClass: {
+          popup: "animate__animated animate__fadeInDown",
+        },
+        hideClass: {
+          popup: "animate__animated animate__fadeOutUp",
+        },
+      });
     });
+    e.reset();
   };
 
-  const handleValidateCaptcha = () => {
-    const captchaValue = captchaRef.current.value;
+  const handleValidateCaptcha = (event) => {
+    const captchaValue = event.target.value;
     if (validateCaptcha(captchaValue) == true) {
       setDisabled(false);
     }
@@ -85,22 +95,13 @@ const Login = () => {
                   </span>
                 </label>
                 <input
-                  ref={captchaRef}
+                  onBlur={handleValidateCaptcha}
                   type="text"
                   name="captcha text"
                   placeholder="write the above captcha"
                   className="input input-bordered"
                 />
-                <label className="form-control mt-4">
-                  <button
-                    onClick={handleValidateCaptcha}
-                    className="btn btn-outline btn-success btn-xs"
-                  >
-                    validate the captcha
-                  </button>
-                </label>
               </div>
-
               <div className="form-control mt-4">
                 <div className="form-control mt-6">
                   <button disabled={disabled} className="btn btn-primary">
