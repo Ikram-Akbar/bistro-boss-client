@@ -28,7 +28,7 @@ const NavBar = () => {
         <Link to="/secret">Secret</Link>
       </li>
       <li>
-        <Link to="/">
+        <Link to="/dashboard/mycart">
           <span className=" flex">
             <FaShoppingCart></FaShoppingCart>
             <div className="badge badge-secondary mx-5">{cart?.length || 0}</div>
