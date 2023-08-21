@@ -33,7 +33,34 @@ const AllUsers = () => {
             })
 
     }
-    const handleDelete = () => {
+
+    const handleDelete = user => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:3002/users/admin/${user._id}`, {
+                    method: 'DELETE'
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.deletedCount > 0) {
+                            refetch();
+                            Swal.fire(
+                                'Deleted!',
+                                'Your file has been deleted.',
+                                'success'
+                            )
+                        }
+                    })
+            }
+        })
 
     }
     return (
@@ -65,7 +92,7 @@ const AllUsers = () => {
                                     <th>{index + 1}</th>
                                     <td>{user.name}</td>
                                     <td>{user.email}</td>
-                                    <td>{user.role == "admin" ? <button className="btn btn-ghost btn-md "><FaShield></FaShield></button>: <button onClick={() => handleMakeAdmin(user)} className="btn btn-ghost btn-md bg-lime-600"><FaUsers></FaUsers></button>}</td>
+                                    <td>{user.role == "admin" ? <button className="btn btn-ghost btn-md "><FaShield></FaShield></button> : <button onClick={() => handleMakeAdmin(user)} className="btn btn-ghost btn-md bg-lime-600"><FaUsers></FaUsers></button>}</td>
                                     <td> <button onClick={() => handleDelete(user)} className="btn btn-ghost btn-md text-white bg-red-500"><FaTrashAlt></FaTrashAlt></button></td>
                                 </tr>)
                             }
